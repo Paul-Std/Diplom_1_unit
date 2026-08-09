@@ -18,7 +18,7 @@ public class BunsTest {
     private Bun bunMock;
     
     @Test
-    public void BurgerSetBun() {
+    public void burgerSetBunTest() {
         burger = new Burger();
         
         burger.setBuns(bunMock);

@@ -24,7 +24,7 @@ public class IngredientReplacerTest {
     private Ingredient potat;
 
     @Test
-    public void ReplaceIngredient() {
+    public void replaceSelectedItemTest() {
         burger = new Burger();
         burger.setBuns(bunMock);
         
@@ -33,7 +33,19 @@ public class IngredientReplacerTest {
         
         burger.moveIngredient(0, 1);
         
-        assertSame(potat, burger.ingredients.get(0));
         assertSame(tomat, burger.ingredients.get(1));
+    }
+
+    @Test
+    public void replaceMovedItemTest() {
+        burger = new Burger();
+        burger.setBuns(bunMock);
+
+        burger.addIngredient(tomat);
+        burger.addIngredient(potat);
+
+        burger.moveIngredient(0, 1);
+
+        assertSame(potat, burger.ingredients.get(0));
     }
 }

@@ -25,7 +25,7 @@ public class IngredientRemoverTest {
     private Ingredient potat;
 
     @Test
-    public void IngredientRemover() {
+    public void RemoverSizeTest() {
         burger = new Burger();
         burger.setBuns(bunMock);
         
@@ -34,7 +34,17 @@ public class IngredientRemoverTest {
         burger.removeIngredient(0);
 
         assertEquals(1, burger.ingredients.size());
-        assertSame(potat, burger.ingredients.get(0));
+    }
 
+    @Test
+    public void RemoverNameTest() {
+        burger = new Burger();
+        burger.setBuns(bunMock);
+
+        burger.addIngredient(tomat);
+        burger.addIngredient(potat);
+        burger.removeIngredient(0);
+
+        assertSame(potat, burger.ingredients.get(0));
     }
 }

@@ -43,7 +43,7 @@ public class IngredientAddTest {
     private Ingredient ingredientMock;
 
     @Test
-    public void IngredientAdd() {
+    public void ingredientSizeTest() {
         burger = new Burger();
         burger.setBuns(bunMock);
         
@@ -52,7 +52,17 @@ public class IngredientAddTest {
         }
         
         assertEquals(ingredientsCount, burger.ingredients.size());
-        assertSame(ingredientMock, burger.ingredients.get(0));
+    }
 
+    @Test
+    public void ingredientNameTest() {
+        burger = new Burger();
+        burger.setBuns(bunMock);
+
+        for (int i = 0; i < ingredientsCount; i++) {
+            burger.addIngredient(ingredientMock);
+        }
+
+        assertSame(ingredientMock, burger.ingredients.get(0));
     }
 }
