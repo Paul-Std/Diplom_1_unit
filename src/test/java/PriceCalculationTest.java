@@ -44,7 +44,7 @@ public class PriceCalculationTest {
     }
 
     @Test
-    public void callCalculationMethodsTest() {
+    public void callBunsCalculationMethodTest() {
         burger = new Burger();
         burger.setBuns(bunMock);
 
@@ -58,7 +58,39 @@ public class PriceCalculationTest {
         float price = burger.getPrice();
         
         verify(bunMock, times(1)).getPrice();
+    }
+
+    @Test
+    public void callSauceCalculationMethodTest() {
+        burger = new Burger();
+        burger.setBuns(bunMock);
+
+        when(bunMock.getPrice()).thenReturn(100f);
+        when(sauce.getPrice()).thenReturn(50f);
+        when(cutlet.getPrice()).thenReturn(150f);
+
+        burger.addIngredient(sauce);
+        burger.addIngredient(cutlet);
+
+        float price = burger.getPrice();
+
         verify(sauce, times(1)).getPrice();
+    }
+
+    @Test
+    public void callFillingCalculationMethodTest() {
+        burger = new Burger();
+        burger.setBuns(bunMock);
+
+        when(bunMock.getPrice()).thenReturn(100f);
+        when(sauce.getPrice()).thenReturn(50f);
+        when(cutlet.getPrice()).thenReturn(150f);
+
+        burger.addIngredient(sauce);
+        burger.addIngredient(cutlet);
+
+        float price = burger.getPrice();
+        
         verify(cutlet, times(1)).getPrice();
     }
 }

@@ -103,7 +103,7 @@ public class RecipeCreatorTest {
     }
 
     @Test
-    public void creationOfRecipeBunsTest() {
+    public void creationOfRecipeBunsNameTest() {
         burger = new Burger();
         burger.setBuns(bunMock);
 
@@ -118,11 +118,28 @@ public class RecipeCreatorTest {
         String receipt = burger.getReceipt();
 
         verify(bunMock, times(2)).getName();
+    }
+
+    @Test
+    public void creationOfRecipeBunsPriceTest() {
+        burger = new Burger();
+        burger.setBuns(bunMock);
+
+        when(bunMock.getName()).thenReturn("black bun");
+        when(bunMock.getPrice()).thenReturn(100f);
+
+        when(testIngredient.getType()).thenReturn(IngredientType.SAUCE);
+        when(testIngredient.getName()).thenReturn("hot sauce");
+        when(testIngredient.getPrice()).thenReturn(50f);
+
+        burger.addIngredient(testIngredient);
+        String receipt = burger.getReceipt();
+
         verify(bunMock, times(1)).getPrice();
     }
 
     @Test
-    public void creationOfRecipeIngredientTest() {
+    public void creationOfRecipeIngredientTypeTest() {
         burger = new Burger();
         burger.setBuns(bunMock);
 
@@ -137,7 +154,41 @@ public class RecipeCreatorTest {
         String receipt = burger.getReceipt();
 
         verify(testIngredient, times(1)).getType();
+    }
+
+    @Test
+    public void creationOfRecipeIngredientNameTest() {
+        burger = new Burger();
+        burger.setBuns(bunMock);
+
+        when(bunMock.getName()).thenReturn("black bun");
+        when(bunMock.getPrice()).thenReturn(100f);
+
+        when(testIngredient.getType()).thenReturn(IngredientType.SAUCE);
+        when(testIngredient.getName()).thenReturn("hot sauce");
+        when(testIngredient.getPrice()).thenReturn(50f);
+
+        burger.addIngredient(testIngredient);
+        String receipt = burger.getReceipt();
+
         verify(testIngredient, times(1)).getName();
+    }
+
+    @Test
+    public void creationOfRecipeIngredientPriceTest() {
+        burger = new Burger();
+        burger.setBuns(bunMock);
+
+        when(bunMock.getName()).thenReturn("black bun");
+        when(bunMock.getPrice()).thenReturn(100f);
+
+        when(testIngredient.getType()).thenReturn(IngredientType.SAUCE);
+        when(testIngredient.getName()).thenReturn("hot sauce");
+        when(testIngredient.getPrice()).thenReturn(50f);
+
+        burger.addIngredient(testIngredient);
+        String receipt = burger.getReceipt();
+
         verify(testIngredient, times(1)).getPrice();
     }
 }
